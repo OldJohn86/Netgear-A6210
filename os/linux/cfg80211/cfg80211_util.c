@@ -327,7 +327,7 @@ BOOLEAN CFG80211_SupBandInit(void *pCB, CFG80211_BAND *pDriverBandInfo,
 
 		/* if (RadarChannelCheck(pAd, Cfg80211_Chan[IdLoop])) */
 
-#if (LINUX_VERSION_CODE >= KERNEL_VERSION(3,14,0))
+#if (LINUX_VERSION_CODE >= KERNEL_VERSION(3,10,0))
 		/* for kernel 3.14 , both value are changed to IEEE80211_CHAN_NO_IR*/
 
 #define IEEE80211_CHAN_NO_IBSS IEEE80211_CHAN_NO_IR
@@ -948,7 +948,7 @@ BOOLEAN CFG80211OS_RxMgmt(PNET_DEV pNetDev, INT32 freq, PUCHAR frame, UINT32 len
 #if (LINUX_VERSION_CODE >= KERNEL_VERSION(3,4,0))
 	struct wireless_dev *pWdev;
 	pWdev = pNetDev->ieee80211_ptr ;
-#if (LINUX_VERSION_CODE >= KERNEL_VERSION(3,18,0))
+#if (LINUX_VERSION_CODE >= KERNEL_VERSION(3,10,0))
 	return cfg80211_rx_mgmt(pWdev, freq, 0,	frame, len, 0);
 #else
 	return cfg80211_rx_mgmt(pWdev, freq, 0, frame, len, 0, GFP_ATOMIC);

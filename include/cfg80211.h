@@ -34,7 +34,7 @@ typedef enum _NDIS_HOSTAPD_STATUS {
 
 typedef struct __CFG80211_CB {
 
-    #if (LINUX_VERSION_CODE >= KERNEL_VERSION(4, 7, 0))
+    #if (LINUX_VERSION_CODE >= KERNEL_VERSION(3,7,0))
     #define ieee80211_band nl80211_band
     #define IEEE80211_BAND_2GHZ NL80211_BAND_2GHZ
     #define IEEE80211_BAND_5GHZ NL80211_BAND_5GHZ

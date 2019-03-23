@@ -721,7 +721,7 @@ static int CFG80211_OpsPwrMgmt(struct wiphy *pWiphy, struct net_device *pNdev,
 	return 0;
 }
 
-
+//#include <linux/cfg80211.h>
 /*
 ========================================================================
 Routine Description:
@@ -772,7 +772,7 @@ static int CFG80211_OpsStaGet(struct wiphy *pWiphy, struct net_device *pNdev,
 	if (StaInfo.TxRateFlags != RT_CMD_80211_TXRATE_LEGACY) {
 		pSinfo->txrate.flags = RATE_INFO_FLAGS_MCS;
 		if (StaInfo.TxRateFlags & RT_CMD_80211_TXRATE_BW_40)
-#if (LINUX_VERSION_CODE < KERNEL_VERSION(4,0,0))
+#if (LINUX_VERSION_CODE < KERNEL_VERSION(3,10,0))
 			pSinfo->txrate.flags |= RATE_INFO_FLAGS_40_MHZ_WIDTH;
 #else
 			pSinfo->txrate.bw = RATE_INFO_BW_40;
@@ -786,7 +786,7 @@ static int CFG80211_OpsStaGet(struct wiphy *pWiphy, struct net_device *pNdev,
 		pSinfo->txrate.legacy = StaInfo.TxRateMCS;
 	}
 
-#if (LINUX_VERSION_CODE < KERNEL_VERSION(4,0,0))
+#if (LINUX_VERSION_CODE < KERNEL_VERSION(3,10,0))
 	pSinfo->filled |= STATION_INFO_TX_BITRATE;
 #else
 	pSinfo->filled |= BIT(NL80211_STA_INFO_TX_BITRATE);
@@ -794,7 +794,7 @@ static int CFG80211_OpsStaGet(struct wiphy *pWiphy, struct net_device *pNdev,
 
 	/* fill signal */
 	pSinfo->signal = StaInfo.Signal;
-#if (LINUX_VERSION_CODE < KERNEL_VERSION(4,0,0))
+#if (LINUX_VERSION_CODE < KERNEL_VERSION(3,10,0))
 	pSinfo->filled |= STATION_INFO_SIGNAL;
 #else
 	pSinfo->filled |= BIT(NL80211_STA_INFO_SIGNAL);

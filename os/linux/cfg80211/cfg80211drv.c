@@ -1153,13 +1153,13 @@ void CFG80211_LostApInform(void *pAdCB)
 	CFG80211_CB *p80211CB = pAd->pCfg80211_CB;
 #endif
 
-#if LINUX_VERSION_CODE < KERNEL_VERSION(3,11,0)
+#if LINUX_VERSION_CODE < KERNEL_VERSION(3,10,0)
 	DBGPRINT(RT_DEBUG_TRACE, ("80211> CFG80211_LostApInform ==> %d\n",
 			p80211CB->pCfg80211_Wdev->sme_state));
 #endif
 	pAd->StaCfg.bAutoReconnect = FALSE;
 
-#if LINUX_VERSION_CODE < KERNEL_VERSION(3,11,0)
+#if LINUX_VERSION_CODE < KERNEL_VERSION(3,10,0)
 	if (p80211CB->pCfg80211_Wdev->sme_state == CFG80211_SME_CONNECTING) {
 		cfg80211_connect_result(pAd->net_dev, NULL, NULL, 0, NULL, 0,
 				WLAN_STATUS_UNSPECIFIED_FAILURE, GFP_KERNEL);
@@ -1167,7 +1167,7 @@ void CFG80211_LostApInform(void *pAdCB)
 		cfg80211_disconnected(pAd->net_dev, 0, NULL, 0, GFP_KERNEL);
 	}
 #else
-#if LINUX_VERSION_CODE < KERNEL_VERSION(4,2,0)
+#if LINUX_VERSION_CODE < KERNEL_VERSION(3,10,0)
 	cfg80211_disconnected(pAd->net_dev, 0, NULL, 0, GFP_KERNEL);
 #else
 	/* bool locally_generated
