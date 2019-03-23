@@ -7,3 +7,4 @@ os/linux/Makefile
 os/linux/Module.symvers
 os/linux/modules.order
 os/linux/mt7662u_sta.mod.c
+*.o.d
