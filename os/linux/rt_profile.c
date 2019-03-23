@@ -183,7 +183,11 @@ NDIS_STATUS RTMPReadParametersHook(RTMP_ADAPTER *pAd)
 			DBGPRINT(RT_DEBUG_ERROR, ("Open file \"%s\" failed!\n", src));
 		} else {
 			// TODO: need to roll back when convert into OSABL code
-			fsize = (ULONG)file_inode(srcf)->i_size;
+#if (LINUX_VERSION_CODE <= KERNEL_VERSION(2,6,32))
+            fsize = (ULONG)srcf->f_dentry->d_inode->i_size;
+#else
+            fsize = (ULONG)file_inode(srcf)->i_size;
+#endif
 			DBGPRINT(RT_DEBUG_INFO, ("buffer size %lu file size %lu\n",
 				buf_size, fsize));
 				if (buf_size < (fsize + 1))
