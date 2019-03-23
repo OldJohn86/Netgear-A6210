@@ -227,6 +227,8 @@ struct iw_statistics *rt28xx_get_wireless_stats(struct net_device *net_dev);
  ***********************************************************************************/
 typedef struct file* RTMP_OS_FD;
 
+typedef uint32_t kuid_t;
+typedef uint32_t kgid_t;
 typedef struct _OS_FS_INFO_
 {
 	kuid_t	fsuid;
