@@ -1,3 +1,9 @@
+# Netgear-_WNDA3100v3_- MT7632U Chip -(CentOS 7)kernel_3.10.0
+Status Updates(03/24/2019):
+    1: take patched, can make build compile -- pass
+    2: The PC will hang up while the device plug in the USB interface.
+    3: Still no any response even run "sudo service network restart".
+
 # Netgear-A6210
 This driver supports Ralink / Mediatek mt766u, mt7632u and mt7612u chipsets.
 
